@@ -1,0 +1,22 @@
+app:
+  title: "GA-Based Delivery Route Optimizer and Shortest Route Finder"
+  description: "Live geolocation + destination autocomplete + real-time road routing."
+map:
+  default_center: [23.8103, 90.4125]
+  default_zoom: 11
+routing:
+  profile: "driving-car"
+  provider: "osrm"
+  geocoding_provider: "nominatim"
+  routing_timeout_seconds: 15
+logging:
+  level: "INFO"
+  file_path: "outputs/logs/app.log"
+paths:
+  optimized_routes_csv: "data/processed/optimized_routes.csv"
+  distance_matrix_csv: "data/processed/distance_matrix.csv"
+  best_route_json: "models/saved/best_route.json"
+  best_solution_pkl: "models/saved/best_solution.pkl"
+  latest_map_html: "outputs/maps/latest_route.html"
+  optimized_map_html: "outputs/maps/optimized_route.html"
+  route_report_txt: "outputs/reports/route_report.txt"

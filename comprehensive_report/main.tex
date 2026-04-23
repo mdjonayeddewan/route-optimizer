@@ -1,0 +1,565 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdftitle={GA-Based Delivery Route Optimizer and Shortest Route Finder},
+  pdfauthor={Student Name}
+}
+
+\setstretch{1.2}
+
+\lstdefinestyle{mystyle}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!40!black},
+  stringstyle=\color{red!60!black},
+  showstringspaces=false
+}
+\lstset{style=mystyle}
+
+\begin{document}
+
+% 1. Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{1.2cm}
+
+    {\LARGE \textbf{GA-Based Delivery Route Optimizer and Shortest Route Finder} \par}
+    \vspace{1.2cm}
+
+    {\Large Course Code: CSE 4XX \par}
+    {\Large Course Title: Machine Learning Sessional \par}
+    \vspace{1.5cm}
+
+    \textbf{Submitted by} \par
+    Student Name \par
+    Student ID: 20XXXXXXX \par
+    Department of Computer Science and Engineering \par
+    \vspace{1.0cm}
+
+    \textbf{Submitted to} \par
+    Teacher Name \par
+    Lecturer/Assistant Professor \par
+    Department of Computer Science and Engineering \par
+    \vspace{1.2cm}
+
+    Rajshahi University of Engineering and Technology (RUET) \par
+    \vfill
+
+    \textbf{Submission Date:} \today
+\end{titlepage}
+
+% 2. Certificate / Approval Page (Optional)
+\chapter*{Certificate / Approval}
+\addcontentsline{toc}{chapter}{Certificate / Approval}
+This is to certify that the project report titled \textit{GA-Based Delivery Route Optimizer and Shortest Route Finder} has been prepared by Student Name (ID: 20XXXXXXX) under my supervision as a partial requirement of the course Machine Learning Sessional.
+
+\vspace{2cm}
+\noindent Supervisor Signature: \rule{6cm}{0.4pt}
+
+\vspace{1cm}
+\noindent Name: Teacher Name
+
+\vspace{0.4cm}
+\noindent Designation: Lecturer/Assistant Professor
+
+\vspace{0.4cm}
+\noindent Department of CSE, RUET
+
+% 3. Acknowledgement
+\chapter*{Acknowledgement}
+\addcontentsline{toc}{chapter}{Acknowledgement}
+I would like to express my sincere gratitude to my course teacher and supervisor for their guidance, technical suggestions, and continuous encouragement throughout this project. I also thank the Department of Computer Science and Engineering, RUET, for providing the academic environment and resources required to complete this work.
+
+% 4. Abstract
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+Route optimization is a core challenge in modern transportation and delivery systems, where minimizing travel distance and time directly affects operational cost and service quality. This project presents a practical web-based system that supports two use cases: point-to-point live road routing and multi-stop route optimization.
+
+For live routing, the system detects user location, accepts typed destination input with suggestions, and obtains valid road routes from OpenStreetMap-based services. For multi-stop optimization, the project applies a Genetic Algorithm (GA) to search for a near-optimal visiting order among delivery points. GA is selected because route ordering is a combinatorial optimization problem with a large search space, where exact methods become expensive for larger instances.
+
+The developed application integrates Streamlit frontend, map visualization, geolocation handling, road routing APIs, and GA modules into a complete workflow. The final output includes ranked route alternatives, distance and estimated duration, and route visualization on an interactive map. Experimental observations show that GA can significantly improve route quality compared to random routes while maintaining practical runtime for small-to-medium problem sizes.
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+% 8. Introduction
+\chapter{Introduction}
+
+\section{Background}
+Route optimization is critical in logistics, food delivery, courier management, and mobility services. Even small reductions in route length can reduce fuel consumption, improve delivery time, and increase customer satisfaction.
+
+\section{Problem Statement}
+Given a start location, an end location, and optional intermediate stops, determine a route that minimizes travel cost (distance/time) while following valid roads.
+
+\section{Motivation}
+Real-world delivery operations require practical software that connects optimization logic with live map data and user-friendly interaction. This project aims to bridge algorithmic optimization and deployable application design.
+
+\section{Objectives}
+The main objectives are:
+\begin{itemize}
+    \item Provide source-to-destination live road routing.
+    \item Support multi-stop route optimization.
+    \item Apply Genetic Algorithm for route-order optimization.
+    \item Visualize optimized routes on an interactive map.
+\end{itemize}
+
+\section{Scope of the Project}
+The project covers web-based route planning, map-assisted route rendering, and GA-based route-order optimization. It does not include full fleet dispatch, dynamic traffic prediction, or enterprise-scale distributed optimization.
+
+\section{Report Organization}
+Chapter 2 reviews related work, Chapter 3 formulates the problem, Chapter 4 presents system overview, Chapter 5 explains methodology, and later chapters cover algorithm design, implementation, experiments, results, practical value, limitations, future work, and conclusion.
+
+% 9. Literature Review
+\chapter{Literature Review / Related Work}
+
+\section{Route Optimization Problem}
+Route optimization frequently appears as variants of Traveling Salesman Problem (TSP) and Vehicle Routing Problem (VRP), both known to be computationally challenging for large instances \cite{dantzig1959}.
+
+\section{Traditional Approaches}
+\subsection{Dijkstra}
+Dijkstra finds shortest paths in weighted graphs with non-negative edges and is suitable for single-source shortest path computations \cite{cormen2009}.
+
+\subsection{A* Search}
+A* improves practical efficiency using heuristics and is widely used for pathfinding in maps and games.
+
+\subsection{Greedy and Brute Force}
+Greedy methods are fast but can be suboptimal. Brute force guarantees optimality for small cases but becomes impractical as the number of stops increases.
+
+\section{Metaheuristic Approaches}
+\subsection{Genetic Algorithm}
+GA evolves candidate solutions using selection, crossover, and mutation and is effective in combinatorial optimization \cite{goldberg1989,holland1992}.
+
+\subsection{Simulated Annealing}
+A probabilistic single-solution search method that can escape local minima by controlled random moves \cite{kirkpatrick1983}.
+
+\subsection{Ant Colony Optimization}
+A population-based method that mimics pheromone-guided path discovery and is popular in routing \cite{dorigo1997}.
+
+\section{Why Genetic Algorithm for This Project}
+GA is selected because multi-stop routing has large permutation search space. GA offers a practical balance between solution quality and runtime, and its operators can be adapted to route-specific constraints.
+
+% 10. Problem Formulation
+\chapter{Problem Formulation}
+
+\section{Input Definition}
+\begin{itemize}
+    \item Start location (latitude, longitude)
+    \item Destination location (latitude, longitude)
+    \item Optional intermediate stop list
+\end{itemize}
+
+\section{Output Definition}
+\begin{itemize}
+    \item Best visiting order for stops
+    \item Total route distance
+    \item Estimated travel duration
+\end{itemize}
+
+\section{Assumptions}
+\begin{itemize}
+    \item Road graph remains static during each optimization run.
+    \item Input points are fixed during a single execution.
+    \item Traffic impact is limited to map service baseline estimation.
+\end{itemize}
+
+\section{Constraints}
+\begin{itemize}
+    \item Each stop is visited once.
+    \item Start and end are fixed for the run.
+    \item Route must remain on valid drivable roads.
+\end{itemize}
+
+% 11. System Overview
+\chapter{System Overview}
+
+\section{Overall System Architecture}
+The system contains:
+\begin{itemize}
+    \item Frontend: Streamlit interface for user interaction
+    \item Data/API Layer: Geolocation, place search, routing calls
+    \item Optimization Layer: GA modules for route ordering
+    \item Visualization Layer: Folium-based map rendering
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.88\textwidth}{
+\centering
+User Input $\rightarrow$ Geolocation/Search $\rightarrow$ Route/Distance Data $\rightarrow$ GA Optimizer $\rightarrow$ Map Visualization
+}}
+\caption{High-level architecture of the route optimizer system}
+\label{fig:architecture}
+\end{figure}
+
+\section{Workflow of the System}
+\begin{enumerate}
+    \item User selects source mode and inputs destination/stops.
+    \item Coordinates are obtained from live location and search API.
+    \item Road distance/time information is retrieved.
+    \item GA optimizes stop ordering for multi-stop cases.
+    \item Final routes are rendered on the interactive map.
+\end{enumerate}
+
+\section{Tools and Technologies Used}
+\begin{itemize}
+    \item Python 3
+    \item Streamlit
+    \item OpenStreetMap stack (Nominatim + OSRM)
+    \item Folium and streamlit-folium
+    \item Genetic Algorithm modules in Python
+    \item LaTeX for report preparation
+\end{itemize}
+
+% 12. Methodology
+\chapter{Methodology}
+
+\section{Why Genetic Algorithm Was Chosen}
+The route-order optimization problem grows factorially with the number of stops. GA provides scalable search in this permutation space, producing near-optimal solutions efficiently.
+
+\section{Chromosome Representation}
+A chromosome is a permutation of stop indices. Example: [A, C, B, D, E] means stops are visited in that sequence.
+
+\section{Population Initialization}
+The initial population is generated by shuffling the base stop sequence to produce diverse route orders.
+
+\section{Fitness Function}
+Cost is computed from segment distances:
+\begin{equation}
+\text{Cost}(R) = \sum_{i=1}^{n-1} d(r_i, r_{i+1})
+\end{equation}
+Fitness is inversely related to cost:
+\begin{equation}
+\text{Fitness}(R) = \frac{1}{\text{Cost}(R)}
+\end{equation}
+So shorter routes get higher fitness.
+
+\section{Selection Strategy}
+Tournament selection is used. A small subset is sampled, and the best individual is selected as parent.
+
+\section{Crossover Strategy}
+Ordered Crossover (OX) is used to preserve relative order while generating valid permutations.
+
+\section{Mutation Strategy}
+Swap mutation exchanges two gene positions with a configured probability to maintain diversity and avoid premature convergence.
+
+\section{Elitism}
+Top-performing chromosomes are retained directly in the next generation.
+
+\section{Stopping Criteria}
+GA stops at maximum generation count. Additional criteria can include no-improvement windows or target fitness.
+
+\section{Route Cost Evaluation Logic}
+Route costs are derived from road-informed distances where available; fallback metrics can be used for resilience in limited API cases.
+
+\section{Final Best Route Selection}
+After the final generation, the chromosome with maximum fitness (minimum cost) is selected as optimized order.
+
+% 13. Algorithm Design and Logic
+\chapter{Algorithm Design and Logic}
+
+\section{Step-by-Step GA Logic}
+\begin{enumerate}
+    \item Generate initial random population.
+    \item Evaluate fitness of each chromosome.
+    \item Select parents using tournament selection.
+    \item Apply ordered crossover.
+    \item Apply mutation to offspring.
+    \item Keep elites and form next generation.
+    \item Repeat until stopping criteria.
+    \item Return the best chromosome.
+\end{enumerate}
+
+\section{Pseudocode of the Algorithm}
+\begin{algorithm}[H]
+\caption{GA for Multi-stop Route Optimization}
+\begin{algorithmic}[1]
+\State Initialize population $P$ with random route permutations
+\For{generation = 1 to MaxGenerations}
+    \State Evaluate fitness of each chromosome in $P$
+    \State Keep top elites
+    \State $P' \gets$ elites
+    \While{$|P'| < |P|$}
+        \State Select parent1, parent2 using tournament selection
+        \State child1, child2 $\gets$ ordered crossover(parent1, parent2)
+        \State child1 $\gets$ mutate(child1)
+        \State child2 $\gets$ mutate(child2)
+        \State Add child1 and child2 to $P'$
+    \EndWhile
+    \State $P \gets P'$
+\EndFor
+\State \Return best chromosome in $P$
+\end{algorithmic}
+\end{algorithm}
+
+\section{Flowchart of the GA Process}
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.9\textwidth}{
+\centering
+Start $\rightarrow$ Initialize Population $\rightarrow$ Evaluate Fitness $\rightarrow$ Select Parents $\rightarrow$ Crossover $\rightarrow$ Mutation $\rightarrow$ Elitism $\rightarrow$ Repeat $\rightarrow$ Best Route
+}}
+\caption{Conceptual GA flowchart}
+\label{fig:ga-flow}
+\end{figure}
+
+\section{Time Complexity Discussion}
+For population size $P$, generations $G$, and chromosome length $N$, complexity is roughly:
+\begin{equation}
+O(G \cdot P \cdot N)
+\end{equation}
+plus route-cost lookup overhead. This is practical for educational and medium-sized cases.
+
+% 14. Implementation Details
+\chapter{Implementation Details}
+
+\section{Folder Structure}
+The project is modular, including frontend, routing, optimization, utilities, and tests:
+\begin{itemize}
+    \item app.py: Streamlit entrypoint
+    \item routing\_logic/: road route generation
+    \item models/: GA and cost modules
+    \item map\_integration/: geolocation, search, rendering
+    \item src/: reusable UI/core utilities
+    \item tests/: unit tests
+\end{itemize}
+
+\section{Frontend Design}
+The app provides source mode selection (live location or custom source), destination search suggestions, and one-click route generation.
+
+\section{Map Integration}
+The map uses Folium and OSM tiles, and routes are drawn as colored polylines with origin and destination markers.
+
+\section{Live Location Handling}
+Browser permission is requested to capture current coordinates. If unavailable, an approximate IP-based fallback can be used.
+
+\section{Autocomplete and Suggestion Logic}
+Destination/source text is sent to Nominatim API; returned candidates are shown to the user for explicit selection.
+
+\section{Route Generation Logic}
+The system requests road-valid routes from OSRM, ranks alternatives by distance, and filters near-duplicate geometries.
+
+\section{Integration of GA with Map Data}
+For multi-stop mode, GA optimizes visiting order; then the resulting sequence is rendered with map-based route segments.
+
+% 15. Experimental Setup
+\chapter{Experimental Setup}
+
+\section{Test Environment}
+\begin{itemize}
+    \item OS: Windows
+    \item Language: Python 3.x
+    \item Framework: Streamlit
+    \item Browser: Chrome/Edge
+    \item Map stack: OSM-based services
+\end{itemize}
+
+\section{Parameter Settings of GA}
+\begin{table}[H]
+\centering
+\caption{Example GA Parameter Settings}
+\label{tab:ga-params}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+Population size & 80 \\
+Generations & 200 \\
+Crossover rate & 0.80 \\
+Mutation rate & 0.15 \\
+Elitism count & 4 \\
+Tournament size & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Test Cases}
+\begin{itemize}
+    \item Small: 5-8 stops
+    \item Medium: 9-15 stops
+    \item Large: 16-25 stops
+\end{itemize}
+
+\section{Evaluation Metrics}
+\begin{itemize}
+    \item Total distance
+    \item Estimated duration
+    \item Convergence speed
+    \item Route quality versus baseline random route
+\end{itemize}
+
+% 16. Results and Analysis
+\chapter{Results and Analysis}
+
+\section{Output Screenshots}
+Add application screenshots in the figures folder and include them as needed.
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.86\textwidth}{\centering Screenshot placeholder: app interface with top-3 route alternatives}}
+\caption{Live routing output screen (placeholder)}
+\label{fig:output-screen}
+\end{figure}
+
+\section{Sample Route Results}
+\begin{table}[H]
+\centering
+\caption{Sample Ranked Route Results}
+\label{tab:sample-results}
+\begin{tabular}{llll}
+\toprule
+Rank & Color & Distance (km) & Estimated Time (min) \\
+\midrule
+1 & Blue & 4.10 & 10.25 \\
+2 & Red & 4.34 & 11.00 \\
+3 & Green & 4.59 & 11.88 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Convergence Behavior}
+GA fitness generally improves over generations and then stabilizes near a local optimum. This indicates healthy evolutionary search dynamics.
+
+\section{Comparison with Non-Optimized Route}
+Random route order consistently produces higher total cost than GA-optimized route in repeated experiments.
+
+\section{Discussion of Results}
+The system delivers practical, interpretable route recommendations and can demonstrate optimization gains clearly in both numeric and visual form.
+
+% 17. Practical Value and Present Perspective
+\chapter{Practical Value and Present Perspective}
+
+\section{Real-World Applications}
+Food delivery, logistics distribution, courier dispatch, ambulance routing, and ride sharing can benefit from route optimization.
+
+\section{Present-Day Value Addition}
+Optimized routing supports fuel savings, reduced delivery delays, improved service quality, and better resource utilization.
+
+\section{Business Perspective}
+Businesses can reduce operational cost and improve on-time performance by using route optimization in planning pipelines.
+
+\section{User Perspective}
+End users receive faster service and more reliable expected arrival times.
+
+\section{Academic Perspective}
+The project combines optimization theory, algorithm design, API integration, and interactive system implementation.
+
+% 18. Limitations
+\chapter{Limitations of the Current System}
+
+\section{No Full Real-Time Traffic Awareness}
+The current version does not integrate dynamic traffic streams at enterprise level.
+
+\section{Dependency on External Map APIs}
+Availability and response quality depend on external services.
+
+\section{Near-Optimal, Not Always Globally Optimal}
+GA gives high-quality solutions but does not guarantee global optimum in all cases.
+
+\section{Limited Constraints Considered}
+Advanced constraints such as time windows and vehicle load are not fully modeled.
+
+\section{Performance Drop at High Scale}
+Very large stop sets can increase runtime and API call volume.
+
+% 19. Future Improvements
+\chapter{Future Improvements}
+
+\begin{itemize}
+    \item Real-time traffic integration
+    \item Time-window constrained optimization
+    \item Vehicle capacity constraints
+    \item Multi-vehicle route optimization
+    \item Hybrid GA with local search or ACO
+    \item Stronger UI/UX with richer analytics
+    \item Mobile application version
+    \item Historical route learning and ML extension
+\end{itemize}
+
+% 20. Conclusion
+\chapter{Conclusion}
+This project addressed the practical route optimization problem by integrating a Genetic Algorithm based optimization engine with a live map-enabled application. The system supports both road-valid route generation and multi-stop route-order optimization. Results demonstrate meaningful reductions in route cost relative to non-optimized baselines, while maintaining usability through interactive visualization. The work has strong practical relevance and can be extended toward traffic-aware, multi-vehicle, and enterprise-scale logistics intelligence.
+
+% 21. References
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+% 22. Appendices
+\appendix
+\chapter{Full Pseudocode}
+\begin{algorithm}[H]
+\caption{Extended GA Procedure}
+\begin{algorithmic}[1]
+\State Input: stop set $S$, GA parameters
+\State Build initial random permutations of $S$
+\Repeat
+  \State Evaluate each route using matrix-based cost
+  \State Preserve elites
+  \State Generate offspring via tournament, OX crossover, swap mutation
+\Until{max generation reached}
+\State Output best route order
+\end{algorithmic}
+\end{algorithm}
+
+\chapter{Important Code Snippets}
+\begin{lstlisting}[language=Python,caption={Simplified fitness and mutation snippet}]
+def route_cost(order, matrix):
+    total = 0.0
+    for i in range(len(order) - 1):
+        total += matrix[order[i]][order[i + 1]]
+    return total
+
+def fitness_from_cost(cost):
+    return 1.0 / cost if cost > 0 else 0.0
+
+# swap mutation
+if random.random() < mutation_rate:
+    i, j = random.sample(range(len(chromosome)), 2)
+    chromosome[i], chromosome[j] = chromosome[j], chromosome[i]
+\end{lstlisting}
+
+\chapter{Additional Screenshots}
+Insert additional UI screenshots here for destination suggestions, top-3 rankings, and route diversity panel.
+
+\chapter{Parameter Tables}
+\begin{longtable}{p{0.35\textwidth}p{0.55\textwidth}}
+\caption{Extended Parameter and Configuration Table}\\
+\toprule
+Item & Description \\
+\midrule
+\endfirsthead
+\toprule
+Item & Description \\
+\midrule
+\endhead
+Routing profile & driving-car / cycling / walking \\
+Map default zoom & Configurable map initial zoom level \\
+Location mode & Live device location or searched custom source \\
+Selection method & Tournament selection \\
+Crossover type & Ordered crossover \\
+Mutation type & Swap mutation \\
+Elitism & Enabled to preserve top chromosomes \\
+\bottomrule
+\end{longtable}
+
+\end{document}

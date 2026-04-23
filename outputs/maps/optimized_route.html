@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_91e8285c05f944f8b19ba5e6f46c5604 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_div {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_91e8285c05f944f8b19ba5e6f46c5604" ></div>
+        
+    
+            <div class="folium-map" id="map_div" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_91e8285c05f944f8b19ba5e6f46c5604 = L.map(
+                "map_91e8285c05f944f8b19ba5e6f46c5604",
+                {
+                    center: [46.3505949, 24.6180894],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+
+            
+
+        
+    
+            var tile_layer_d09680e47518dc7fbed892060f236064 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d09680e47518dc7fbed892060f236064.addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+        
+    
+            var marker_34e571206352477aa2a7b9dd1eb0e2cf = L.marker(
+                [46.3505949, 24.6180894],
+                {
+}
+            ).addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+        
+    
+            var icon_6d5249d6c68592bbcb04d0e6a227817a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "play",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_49520fa98e153199cab2d89559ef4b4d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fe96f44510fabbaaa34a663cb23abbe8 = $(`<div id="html_fe96f44510fabbaaa34a663cb23abbe8" style="width: 100.0%; height: 100.0%;">Start: RUET</div>`)[0];
+                popup_49520fa98e153199cab2d89559ef4b4d.setContent(html_fe96f44510fabbaaa34a663cb23abbe8);
+            
+        
+
+        marker_34e571206352477aa2a7b9dd1eb0e2cf.bindPopup(popup_49520fa98e153199cab2d89559ef4b4d)
+        ;
+
+        
+    
+    
+                marker_34e571206352477aa2a7b9dd1eb0e2cf.setIcon(icon_6d5249d6c68592bbcb04d0e6a227817a);
+            
+    
+            var marker_88a4e7e59b9593834820d2a1e3d6eac8 = L.marker(
+                [25.9312225, 88.8549916],
+                {
+}
+            ).addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+        
+    
+            var icon_303c538aa739809e11a81d5721d54b72 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "truck",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cdb9f80c528909bf9a74dc58e40a683a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_84724adb528f0c1d6019e87a5dec5a2a = $(`<div id="html_84724adb528f0c1d6019e87a5dec5a2a" style="width: 100.0%; height: 100.0%;">Stop 1: Saheb Bazar</div>`)[0];
+                popup_cdb9f80c528909bf9a74dc58e40a683a.setContent(html_84724adb528f0c1d6019e87a5dec5a2a);
+            
+        
+
+        marker_88a4e7e59b9593834820d2a1e3d6eac8.bindPopup(popup_cdb9f80c528909bf9a74dc58e40a683a)
+        ;
+
+        
+    
+    
+                marker_88a4e7e59b9593834820d2a1e3d6eac8.setIcon(icon_303c538aa739809e11a81d5721d54b72);
+            
+    
+            var marker_0d73c4eddda716deb02f437f28076aa1 = L.marker(
+                [25.2178833, 88.7696586],
+                {
+}
+            ).addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+        
+    
+            var icon_5418758b9dcff1dd225100b1e9c17727 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "truck",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_22f9dba7d80057bc9c61282513f48222 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4bebe3671eb2b1884d974733a7db42f9 = $(`<div id="html_4bebe3671eb2b1884d974733a7db42f9" style="width: 100.0%; height: 100.0%;">Stop 2: Shalbagan</div>`)[0];
+                popup_22f9dba7d80057bc9c61282513f48222.setContent(html_4bebe3671eb2b1884d974733a7db42f9);
+            
+        
+
+        marker_0d73c4eddda716deb02f437f28076aa1.bindPopup(popup_22f9dba7d80057bc9c61282513f48222)
+        ;
+
+        
+    
+    
+                marker_0d73c4eddda716deb02f437f28076aa1.setIcon(icon_5418758b9dcff1dd225100b1e9c17727);
+            
+    
+            var marker_b78f2a6d4d45ae40cbb0e6d47dd9fdeb = L.marker(
+                [24.3762536, 88.6192135],
+                {
+}
+            ).addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+        
+    
+            var icon_a61033553ec0aecc9ac8b659beb698e2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "truck",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e4326dd3588379b9e7dc77b0897f9932 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2ddc8fdec47ea8ddd6f31726f5a69df = $(`<div id="html_f2ddc8fdec47ea8ddd6f31726f5a69df" style="width: 100.0%; height: 100.0%;">Stop 3: Padma Residential</div>`)[0];
+                popup_e4326dd3588379b9e7dc77b0897f9932.setContent(html_f2ddc8fdec47ea8ddd6f31726f5a69df);
+            
+        
+
+        marker_b78f2a6d4d45ae40cbb0e6d47dd9fdeb.bindPopup(popup_e4326dd3588379b9e7dc77b0897f9932)
+        ;
+
+        
+    
+    
+                marker_b78f2a6d4d45ae40cbb0e6d47dd9fdeb.setIcon(icon_a61033553ec0aecc9ac8b659beb698e2);
+            
+    
+            var marker_e4d257830bf94f814c0c739147b54305 = L.marker(
+                [24.5957216, 88.2749225],
+                {
+}
+            ).addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+        
+    
+            var icon_2b642984ff04aad0ab68af2c89a005b0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "stop",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b8c509ce104f9b1d0be25b68e715fc8a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b3f5914cfdea3c19e3218559bbf9b4ca = $(`<div id="html_b3f5914cfdea3c19e3218559bbf9b4ca" style="width: 100.0%; height: 100.0%;">End: New Market, Rajshahi</div>`)[0];
+                popup_b8c509ce104f9b1d0be25b68e715fc8a.setContent(html_b3f5914cfdea3c19e3218559bbf9b4ca);
+            
+        
+
+        marker_e4d257830bf94f814c0c739147b54305.bindPopup(popup_b8c509ce104f9b1d0be25b68e715fc8a)
+        ;
+
+        
+    
+    
+                marker_e4d257830bf94f814c0c739147b54305.setIcon(icon_2b642984ff04aad0ab68af2c89a005b0);
+            
+    
+            var poly_line_addf58019b51b5e4f464fc4392506906 = L.polyline(
+                [[46.3505949, 24.6180894], [25.9312225, 88.8549916], [25.2178833, 88.7696586], [24.3762536, 88.6192135], [24.5957216, 88.2749225]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+        
+    
+            map_91e8285c05f944f8b19ba5e6f46c5604.fitBounds(
+                [[46.3505949, 24.6180894], [25.9312225, 88.8549916], [25.2178833, 88.7696586], [24.3762536, 88.6192135], [24.5957216, 88.2749225]],
+                {}
+            );
+        
+    
+            tile_layer_d09680e47518dc7fbed892060f236064.addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+        
+    
+                marker_34e571206352477aa2a7b9dd1eb0e2cf.setIcon(icon_6d5249d6c68592bbcb04d0e6a227817a);
+            
+    
+                marker_88a4e7e59b9593834820d2a1e3d6eac8.setIcon(icon_303c538aa739809e11a81d5721d54b72);
+            
+    
+                marker_0d73c4eddda716deb02f437f28076aa1.setIcon(icon_5418758b9dcff1dd225100b1e9c17727);
+            
+    
+                marker_b78f2a6d4d45ae40cbb0e6d47dd9fdeb.setIcon(icon_a61033553ec0aecc9ac8b659beb698e2);
+            
+    
+                marker_e4d257830bf94f814c0c739147b54305.setIcon(icon_2b642984ff04aad0ab68af2c89a005b0);
+            
+    
+            var map_div = L.map(
+                "map_div",
+                {
+                    center: [46.3505949, 24.6180894],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_div);
+
+            
+
+        
+    
+            var tile_layer_div_0 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d09680e47518dc7fbed892060f236064.addTo(map_91e8285c05f944f8b19ba5e6f46c5604);
+        
+    
+            tile_layer_div_0.addTo(map_div);
+        
+    
+            var marker_div_1 = L.marker(
+                [46.3505949, 24.6180894],
+                {
+}
+            ).addTo(map_div);
+        
+    
+            var icon_div_1_0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "play",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_div_1_1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fe96f44510fabbaaa34a663cb23abbe8 = $(`<div id="html_fe96f44510fabbaaa34a663cb23abbe8" style="width: 100.0%; height: 100.0%;">Start: RUET</div>`)[0];
+                popup_div_1_1.setContent(html_fe96f44510fabbaaa34a663cb23abbe8);
+            
+        
+
+        marker_div_1.bindPopup(popup_div_1_1)
+        ;
+
+        
+    
+    
+                marker_div_1.setIcon(icon_div_1_0);
+            
+    
+                marker_div_1.setIcon(icon_div_1_0);
+            
+    
+                marker_div_1.setIcon(icon_div_1_0);
+            
+    
+            var marker_div_2 = L.marker(
+                [25.9312225, 88.8549916],
+                {
+}
+            ).addTo(map_div);
+        
+    
+            var icon_div_2_0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "truck",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_div_2_1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_84724adb528f0c1d6019e87a5dec5a2a = $(`<div id="html_84724adb528f0c1d6019e87a5dec5a2a" style="width: 100.0%; height: 100.0%;">Stop 1: Saheb Bazar</div>`)[0];
+                popup_div_2_1.setContent(html_84724adb528f0c1d6019e87a5dec5a2a);
+            
+        
+
+        marker_div_2.bindPopup(popup_div_2_1)
+        ;
+
+        
+    
+    
+                marker_div_2.setIcon(icon_div_2_0);
+            
+    
+                marker_div_2.setIcon(icon_div_2_0);
+            
+    
+                marker_div_2.setIcon(icon_div_2_0);
+            
+    
+            var marker_div_3 = L.marker(
+                [25.2178833, 88.7696586],
+                {
+}
+            ).addTo(map_div);
+        
+    
+            var icon_div_3_0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "truck",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_div_3_1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4bebe3671eb2b1884d974733a7db42f9 = $(`<div id="html_4bebe3671eb2b1884d974733a7db42f9" style="width: 100.0%; height: 100.0%;">Stop 2: Shalbagan</div>`)[0];
+                popup_div_3_1.setContent(html_4bebe3671eb2b1884d974733a7db42f9);
+            
+        
+
+        marker_div_3.bindPopup(popup_div_3_1)
+        ;
+
+        
+    
+    
+                marker_div_3.setIcon(icon_div_3_0);
+            
+    
+                marker_div_3.setIcon(icon_div_3_0);
+            
+    
+                marker_div_3.setIcon(icon_div_3_0);
+            
+    
+            var marker_div_4 = L.marker(
+                [24.3762536, 88.6192135],
+                {
+}
+            ).addTo(map_div);
+        
+    
+            var icon_div_4_0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "truck",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_div_4_1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2ddc8fdec47ea8ddd6f31726f5a69df = $(`<div id="html_f2ddc8fdec47ea8ddd6f31726f5a69df" style="width: 100.0%; height: 100.0%;">Stop 3: Padma Residential</div>`)[0];
+                popup_div_4_1.setContent(html_f2ddc8fdec47ea8ddd6f31726f5a69df);
+            
+        
+
+        marker_div_4.bindPopup(popup_div_4_1)
+        ;
+
+        
+    
+    
+                marker_div_4.setIcon(icon_div_4_0);
+            
+    
+                marker_div_4.setIcon(icon_div_4_0);
+            
+    
+                marker_div_4.setIcon(icon_div_4_0);
+            
+    
+            var marker_div_5 = L.marker(
+                [24.5957216, 88.2749225],
+                {
+}
+            ).addTo(map_div);
+        
+    
+            var icon_div_5_0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "stop",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_div_5_1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b3f5914cfdea3c19e3218559bbf9b4ca = $(`<div id="html_b3f5914cfdea3c19e3218559bbf9b4ca" style="width: 100.0%; height: 100.0%;">End: New Market, Rajshahi</div>`)[0];
+                popup_div_5_1.setContent(html_b3f5914cfdea3c19e3218559bbf9b4ca);
+            
+        
+
+        marker_div_5.bindPopup(popup_div_5_1)
+        ;
+
+        
+    
+    
+                marker_div_5.setIcon(icon_div_5_0);
+            
+    
+                marker_div_5.setIcon(icon_div_5_0);
+            
+    
+                marker_div_5.setIcon(icon_div_5_0);
+            
+    
+            var poly_line_div_6 = L.polyline(
+                [[46.3505949, 24.6180894], [25.9312225, 88.8549916], [25.2178833, 88.7696586], [24.3762536, 88.6192135], [24.5957216, 88.2749225]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_div);
+        
+    
+            map_div.fitBounds(
+                [[46.3505949, 24.6180894], [25.9312225, 88.8549916], [25.2178833, 88.7696586], [24.3762536, 88.6192135], [24.5957216, 88.2749225]],
+                {}
+            );
+        
+</script>
+</html>

@@ -1,0 +1,8 @@
+ga:
+  population_size: 80
+  generations: 150
+  mutation_rate: 0.12
+  crossover_rate: 0.9
+  elitism_count: 4
+  tournament_size: 4
+  random_seed: 42

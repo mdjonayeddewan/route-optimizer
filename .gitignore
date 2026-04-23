@@ -1,0 +1,17 @@
+__pycache__/
+.pytest_cache/
+.env
+.streamlit/secrets.toml
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+outputs/logs/
+models/saved/*.pkl
+.DS_Store
+Thumbs.db

@@ -1,0 +1,7 @@
+Provider: osrm
+Best Distance (m): 5663.40
+Best Duration (s): 498.20
+Origin Name: রাজশাহী মেডিকেল কলেজ, Residential road, কাদিরগঞ্জ, রাজশাহী, রাজশাহী জেলা, রাজশাহী বিভাগ, 6000, বাংলাদেশ
+Origin: 24.373046, 88.587119
+Destination Name: RUET Library Road, তালাইমারি, রাজশাহী, রাজশাহী জেলা, রাজশাহী বিভাগ, 6204, বাংলাদেশ
+Destination: 24.365904, 88.627542

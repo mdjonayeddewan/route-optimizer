@@ -1,0 +1,12 @@
+streamlit==1.43.2
+streamlit-js-eval==0.1.7
+folium==0.19.5
+streamlit-folium==0.25.0
+openrouteservice==2.3.3
+geopy==2.4.1
+pandas==2.2.3
+numpy==2.2.4
+PyYAML==6.0.2
+python-dotenv==1.0.1
+requests==2.32.3
+pytest==8.3.5
