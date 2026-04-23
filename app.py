@@ -3,7 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 
 import streamlit as st
-from dotenv import load_dotenv
 
 from application.models import PlaceSuggestion
 from map_integration.geolocation import request_ip_based_location, request_live_location
@@ -41,8 +40,6 @@ def _overlap_percent(coords_a: list[list[float]], coords_b: list[list[float]]) -
 
 
 def main() -> None:
-    load_dotenv()
-
     app_config = FileHandler.read_yaml(ROOT / "config" / "config.yaml")
     ga_config_raw = FileHandler.read_yaml(ROOT / "config" / "routes_config.yaml")
 
