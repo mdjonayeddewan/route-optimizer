@@ -1,9 +1,25 @@
 from __future__ import annotations
 
-import folium
-from streamlit_folium import st_folium
+import streamlit as st
+
+try:
+    import folium
+    from streamlit_folium import st_folium
+except ModuleNotFoundError:
+    folium = None
+    st_folium = None
 
 from application.models import PlaceSuggestion, RouteData
+
+
+def _ensure_map_dependencies() -> bool:
+    if folium is None or st_folium is None:
+        st.error(
+            "Map dependencies are missing on this deployment environment. "
+            "Please confirm requirements installation includes folium and streamlit-folium."
+        )
+        return False
+    return True
 
 
 def render_live_route_map(
@@ -12,6 +28,9 @@ def render_live_route_map(
     route: RouteData,
     default_zoom: int,
 ) -> None:
+    if not _ensure_map_dependencies():
+        return
+
     center = (
         (current.latitude + destination.latitude) / 2,
         (current.longitude + destination.longitude) / 2,
@@ -46,6 +65,9 @@ def render_live_route_map_alternatives(
     routes: list[RouteData],
     default_zoom: int,
 ) -> None:
+    if not _ensure_map_dependencies():
+        return
+
     center = (
         (current.latitude + destination.latitude) / 2,
         (current.longitude + destination.longitude) / 2,
